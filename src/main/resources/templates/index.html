@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidatos - Eleições 2026 - MG</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="cabecalho">
+    <h1>Candidatos - Eleições 2026 - MG</h1>
+</header>
+
+<main class="conteudo">
+
+    <form method="get" th:action="@{/}" class="filtros">
+
+        <div class="campo">
+            <label for="genero">Genero
+                <input type="radio" name="genero" value="" th:checked="$(generoSelecionado == '')"> Todos
+            </label>
+            <label th:each="g : $(generos)">
+                <input type="radio" name="genero" value="" th:checked="$(g == generoSelecionado)">
+                <span th:text="${g}">Genero</span>
+            </label>
+        </div>
+
+        <div class="campo">
+            <label for="escolaridade">Escolaridade</label>
+            <select id="escolaridade" name="escolaridade">
+                <option value="" th:selected="${escolaridadeSelecionada == ''}">Todas</option>
+                <option th:each="e : ${escolaridade}"
+                        th:value="${e}"
+                        th:text="${e}"
+                        th:selected="${e == escolaridadeSelecionada}"></option>
+            </select>
+        </div>
+
+        <div class="campo">
+            <label for="faixaEtaria">Faixa Etaria</label>
+            <input type="number" name="idadeMin" th:value="${idadeMin}"> 
+            <span>até</span>
+            <input type="number" name="idadeMax" th:value="${idadeMax}">
+        </div>
+
+        <div class="acoes">
+            <button type="submit">Filtrar</button>
+            <a th:href="@{/}" class="limpar">Limpar</a>
+        </div>
+    </form>
+
+    <p class="resultado-info">
+        <span th:text="${totalEncontrado}">0</span> candidato(s) encontrado(s).
+    </p>
+
+    <p th:if="${totalEncontrado == 0}" class="sem-resultado">
+        Nenhum candidato encontrado com esses filtros.
+    </p>
+
+    <section class="grade-candidatos">
+        <div class="card" th:each="cand : ${candidatos}">
+            <div class="foto-wrapper">
+                <span class="sem-foto">Sem foto</span>
+                <img th:src="@{'/images/candidatos/' + ${cand.nomeArquivoFoto}}"
+                     th:alt="${cand.nomeUrna}" class="foto-candidato"
+                     loading="lazy" onerror="this.style.display='none'">
+            </div>
+
+            <div class="info">
+                <h2 class="nome-urna" th:text="${cand.nomeUrna}">Nome de urna</h2>
+                <p class="numero"><span th:text="${cand.nrCandidato}">0000</span></p>
+                <p class="cargo" th:text="${cand.cargo}">Cargo</p>
+                <p class="partido" th:text="${cand.siglaPartido + ' - ' + cand.nomePartido}">Partido</p>
+                <p class="extra" th:text="${cand.municipio}">Município</p>
+
+                <p class="extra" th:if="${cand.idade > 0}">
+                    <span th:text="${cand.idade + ' anos'}">idade</span>
+                </p>
+
+                <p class="extra" th:if="${cand.ocupacao != null and !cand.ocupacao.isBlank()}"
+                   th:text="${cand.ocupacao}">Ocupação</p>
+
+                <p class="extra" th:if="${cand.grauInstrucao != null and !cand.grauInstrucao.isBlank()}"
+                   th:text="${cand.grauInstrucao}">Escolaridade</p>
+
+                <p class="nome-civil" th:text="${cand.nomeCandidato}">Nome civil</p>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+</body>
+</html>

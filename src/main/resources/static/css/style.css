@@ -1,0 +1,170 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f2f3f5;
+    color: #222;
+}
+
+.cabecalho {
+    background-color: #1f3a68;
+    color: #fff;
+    padding: 16px 24px;
+}
+
+.cabecalho h1 {
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+.conteudo {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 16px;
+}
+
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 12px;
+    background-color: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.campo label {
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.campo input,
+.campo select {
+    padding: 8px 10px;
+    font-size: 0.95rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 170px;
+}
+
+.acoes {
+    display: flex;
+    gap: 8px;
+}
+
+.acoes button,
+.acoes .limpar {
+    padding: 9px 18px;
+    font-size: 0.95rem;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.acoes button {
+    background-color: #1f3a68;
+    color: #fff;
+    border: 1px solid #1f3a68;
+}
+
+.acoes button:hover {
+    background-color: #16294a;
+}
+
+.acoes .limpar {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.acoes .limpar:hover {
+    background-color: #f0f0f0;
+}
+
+.resultado-info {
+    margin: 16px 0 12px;
+}
+
+.sem-resultado {
+    padding: 16px;
+    background-color: #fff3cd;
+    border: 1px solid #ffe08a;
+    border-radius: 6px;
+    color: #664d03;
+}
+
+.grade-candidatos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.foto-wrapper {
+    position: relative;
+    aspect-ratio: 161 / 225;
+    background-color: #e4e6ea;
+}
+
+.sem-foto {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.foto-candidato {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 161 / 225;
+    object-fit: cover;
+}
+
+.info {
+    padding: 10px;
+}
+
+.info p {
+    margin: 2px 0;
+    font-size: 0.75rem;
+}
+
+.nome-urna {
+    margin: 0 0 4px;
+    font-size: 0.95rem;
+    color: #1f3a68;
+}
+
+.numero,
+.cargo {
+    font-weight: bold;
+}
+
+.situacao {
+    color: #1a7f37;
+    font-weight: bold;
+}
+
+.nome-civil {
+    font-style: italic;
+}
